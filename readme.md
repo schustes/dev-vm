@@ -35,15 +35,15 @@ Vagrant vereinfacht neben dem setup auch das Benutzen der VM.
 - vagrant ssh: Direkt via ssh einloggen. Wenn ssh von Windows aus genutzt wird, muss erst ein Bug in vagrant behoben werden:  
 
   Open C:\development\Vagrant\embedded\gems\gems\vagrant-2.0.2\lib\vagrant\util\ssh.rb and remove faulty windows check in line 82-88  
-    # if Platform.windows?  
-    #   raise Errors::SSHUnavailableWindows,  
-    #     host: ssh_info[:host],  
-    #     port: ssh_info[:port],  
-    #     username: ssh_info[:username],  
-    #     key_path: ssh_info[:private_key_path].join(", ")  
-    # end  
+  # if Platform.windows?  
+  #   raise Errors::SSHUnavailableWindows,  
+  #     host: ssh_info[:host],  
+  #     port: ssh_info[:port],  
+  #     username: ssh_info[:username],  
+  #     key_path: ssh_info[:private_key_path].join(", ")  
+  # end  
 
-Source: https://gist.github.com/haf/2843680
+  Source: https://gist.github.com/haf/2843680
 
 
 
