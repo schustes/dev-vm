@@ -2,10 +2,10 @@
 
 Mit diesem Skript wird über vagrant eine VM angelegt und mit diversen Skripten eingerichtet. 
 
-### Voraussetzungen### 
+### Voraussetzungen ### 
 vagrant ist installiert.
 Eine VirtualBox ist installiert. Das kann evtl. Probleme mit Windows 10 geben wenn man nativ bereits Docker installiert hat (https://forums.docker.com/t/running-docker-and-virtualbox-on-the-same-machine/23578/8).
-Evtl. behhebar über Änderung der Windows Einstellungen?
+Evtl. behebbar über Änderung der Windows Einstellungen?
 
 ## Konfiguration ##
 Als Basis ist nur der Ubuntu Desktop und eine Oracle 8 JVM installiert.
@@ -32,17 +32,18 @@ Bei Aufruf von http://192.168.56.1:12001/kafkademo/messages/consumer sollte dann
 ## Nützliches ##
 Vagrant vereinfacht neben dem setup auch das Benutzen der VM.
 
-- vagrant ssh: Direkt via ssh einloggen. Wenn ssh von Windows aus genutzt wird, muss erst ein Bug in vagrant behoben werden:
-Open C:\development\Vagrant\embedded\gems\gems\vagrant-2.0.2\lib\vagrant\util\ssh.rb and remove faulty windows check in line 82-88
-         # if Platform.windows?
-         #   raise Errors::SSHUnavailableWindows,
-         #     host: ssh_info[:host],
-         #     port: ssh_info[:port],
-         #     username: ssh_info[:username],
-         #     key_path: ssh_info[:private_key_path].join(", ")
-         # end
+- vagrant ssh: Direkt via ssh einloggen. Wenn ssh von Windows aus genutzt wird, muss erst ein Bug in vagrant behoben werden:  
 
-		 Source: https://gist.github.com/haf/2843680
+Open C:\development\Vagrant\embedded\gems\gems\vagrant-2.0.2\lib\vagrant\util\ssh.rb and remove faulty windows check in line 82-88  
+         # if Platform.windows?  
+         #   raise Errors::SSHUnavailableWindows,  
+         #     host: ssh_info[:host],  
+         #     port: ssh_info[:port],  
+         #     username: ssh_info[:username],  
+         #     key_path: ssh_info[:private_key_path].join(", ")  
+         # end  
+
+Source: https://gist.github.com/haf/2843680
 
 
 
