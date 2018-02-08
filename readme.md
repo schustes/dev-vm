@@ -3,8 +3,8 @@
 Mit diesem Skript wird über vagrant eine VM angelegt und mit diversen Skripten eingerichtet. 
 
 ### Voraussetzungen ### 
-vagrant ist installiert.
-Eine VirtualBox ist installiert. Das kann evtl. Probleme mit Windows 10 geben wenn man nativ bereits Docker installiert hat (https://forums.docker.com/t/running-docker-and-virtualbox-on-the-same-machine/23578/8).
+- vagrant ist installiert.
+- Eine VirtualBox ist installiert. Das kann evtl. Probleme mit Windows 10 geben wenn man nativ bereits Docker installiert hat (https://forums.docker.com/t/running-docker-and-virtualbox-on-the-same-machine/23578/8).
 Evtl. behebbar über Änderung der Windows Einstellungen?
 
 ## Konfiguration ##
