@@ -17,8 +17,10 @@ rm -f /opt/kafka_2.12-1.0.0.tgz
 
 #Start single-node kafka in the background by default
 cd /opt/kafka
-nohup bin/zookeeper-server-start.sh config/zookeeper.properties & >/var/log/zookeeper.log ; true
-nohup bin/kafka-server-start.sh config/server.properties & >/var/log/kafka.log; true
+nohup bin/zookeeper-server-start.sh config/zookeeper.properties & >/var/log/zookeeper.log 2>&1
+sleep 5
+nohup bin/kafka-server-start.sh config/server.properties & >/var/log/kafka.log 2>&1
 #create test topic
+sleep 5
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 
