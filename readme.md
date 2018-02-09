@@ -19,14 +19,15 @@ Die Konfiguration im Vagrantfile kann bei Bedarf angepasst werden (z.B. um nur e
 ## Benutzen ##
 - Nach dem vagrant fertig ist, sollte eine VM in der VirtualBox auftauchen, die man dann einfach benutzen kann. Der Standarduser ist vagrant/vagrant. Root Passwort ist ebenfalls vagrant.
 
-- Alle installierten und kopierten Dateien sind (mit Ausnahme git) in /opt (git, mvn, gradle, eclipse, intellij). Intellij muss aber erst noch über das Skript initialisiert werden.
+- Alle installierten und kopierten Dateien sind (mit Ausnahme git) in /opt (git, mvn, gradle, eclipse, idea). Idea muss aber erst noch über das Skript initialisiert werden.
 
-- Kafka ist im Hintergrund gestartet. Als Test wurde ebenfalls eine Spring Demo app gestartet. Kafka sollte sowohl von der VM als auch vom Host ansprechbar sein.
+- Kafka ist im Hintergrund gestartet. Als Test wurde ebenfalls eine Spring Demo app gestartet. Kafka sollte sowohl von der VM als auch vom Host ansprechbar sein (es scheint immer etwas dauern,
+bis die Anwendung vom Host aus erreichbar ist).
 Bsp.: bin/kafka-topics.sh --list --zookeeper 192.168.56.1:2181 vom Host bzw.  bin/kafka-topics.sh --list --zookeeper localhost:2181 von der VM aus.
 Obiger Befehl sollte als Ergebnis 'test' als einziges Topic zurückliefern.
 
 - Verifizieren dass alles richtig läuft:
-Testnachricht publishen: Im Browser http://192.168.56.1:12001/kafkademo/messages/producer?data=hello world! eingeben
+Testnachricht publishen: Im Browser http://192.168.56.1:12001/kafkademo/messages/producer?data=hello world! eingeben.
 Bei Aufruf von http://192.168.56.1:12001/kafkademo/messages/consumer sollte dann 'Hello world!' erscheinen
 
 ## Nützliches ##
