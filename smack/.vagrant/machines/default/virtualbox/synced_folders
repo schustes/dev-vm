@@ -1,0 +1,1 @@
+{"virtualbox":{"/vagrant":{"nfs_udp":false,"nfs_version":4,"guestpath":"/vagrant","hostpath":"C:/development/dev-vm/smack","disabled":false,"__vagrantfile":true}}}
