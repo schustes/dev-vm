@@ -1,26 +1,20 @@
 #!/bin/bash
 
-echo "Kafka installieren..."
+echo "Scala env einrichten..."
 
-sudo kill -9 `pgrep --full kafka`
-rm -rf /tmp/kafka-logs
+rm -rf /opt/scala
 
-cd /opt
-rm -rf /opt/kafka*
+mkdir /opt/scala
 
-wget http://apache.lauf-forum.at/kafka/1.0.0/kafka_2.12-1.0.0.tgz >/dev/null 2>&1
+wget https://github.com/sbt/sbt/releases/download/v1.1.0/sbt-1.1.0.tgz 2>&1
+wget https://downloads.lightbend.com/scala/2.12.4/scala-2.12.4.tgz 2>&1
 
-tar -xzf kafka_2.12-1.0.0.tgz
+tar -xzf sbt-1.1.0.tgz
+tar -xzf scala-2.12.4.tgz
 
-ln -s /opt/kafka_2.12-1.0.0 /opt/kafka
-rm -f /opt/kafka_2.12-1.0.0.tgz
+rm sbt-1.1.0.tgz
+rm scala-2.12.4.tgz
 
-#Start single-node kafka in the background by default
-cd /opt/kafka
-nohup bin/zookeeper-server-start.sh config/zookeeper.properties & >/var/log/zookeeper.log 2>&1
-sleep 5
-nohup bin/kafka-server-start.sh config/server.properties & >/var/log/kafka.log 2>&1
-#create test topic
-sleep 5
-bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+echo PATH=\$PATH:/opt/scala/sbt/bin:opt/scala/scala-2.12.4/bin >> /home/vagrant/.profile
+source /home/vagrant/.profile
 

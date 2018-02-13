@@ -2,14 +2,18 @@ Vagrant.configure("2") do |config|
   config.vm.box = "stephan_schuster/ubuntu16.04.3-desktop-64bit"
   config.vm.box_version = "1.0.0"
   config.vm.network "forwarded_port", guest: 22, host: 2222, host_ip: "127.0.0.1", id: 'ssh'
-  config.vm.synced_folder './', '/vagrant', type: 'nfs', nfs_udp: false, nfs_version: 4
+  
+  config.vm.synced_folder './vagrant', '/vagrant', type: 'virtualbox'
+  config.vm.synced_folder './share/logs', '/var/log', type: 'virtualbox'
+  config.vm.synced_folder './share/src', '/opt/src', type: 'virtualbox'
 
+  
   config.vm.provision "shell", path: "../base-scripts/pre-install.sh"
   config.vm.provision "shell", path: "../base-scripts/git-install.sh"
-  #config.vm.provision "shell", path: "scripts/scala-sbt-install.sh" 
+  config.vm.provision "shell", path: "scripts/scala-sbt-install.sh" 
   config.vm.provision "shell", path: "scripts/cassandra-install.sh"
   config.vm.provision "shell", path: "scripts/spark-install.sh"
-  config.vm.provision "shell", path: "scripts/kafka-install.sh"
+  config.vm.provision "shell", path: "../kafka/scripts/kafka-install.sh"
   #config.vm.provision "shell", path: "scripts/killrwheather-install.sh"
   config.vm.provision "shell", path: "../base-scripts/post-install.sh"
 

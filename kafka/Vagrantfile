@@ -1,20 +1,37 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
 Vagrant.configure("2") do |config|
   config.vm.box = "stephan_schuster/ubuntu16.04.3-desktop-64bit"
-  config.vm.box_version = "1.0.0"
-  config.vm.network "forwarded_port", guest: 22, host: 2222, host_ip: "127.0.0.1", id: 'ssh'
-  config.vm.synced_folder './', '/vagrant', type: 'nfs', nfs_udp: false, nfs_version: 4
+  config.vm.box_version = "1.0.1"
 
-  config.vm.provision "shell", path: "scripts/pre-install.sh"
-  config.vm.provision "shell", path: "scripts/git-install.sh"
-  config.vm.provision "shell", path: "scripts/mvn-install.sh" 
-  config.vm.provision "shell", path: "scripts/gradle-install.sh"
-  config.vm.provision "shell", path: "scripts/idea-install.sh"
-  config.vm.provision "shell", path: "scripts/eclipse-install.sh"
+  config.vm.synced_folder './vagrant', '/vagrant', type: 'virtualbox'
+  config.vm.synced_folder './share/logs', '/var/log', type: 'virtualbox'
+  config.vm.synced_folder './share/kafka-logs', '/opt/kafka_2.12-1.0.0/logs', type: 'virtualbox'
+  config.vm.synced_folder './share/src', '/opt/src', type: 'virtualbox'
+
+  config.vm.provision "file", source: "./id_rsa", destination: "/home/vagrant/.ssh/id_rsa"
+  
+  config.vm.provision "shell", path: "../base-scripts/pre-install.sh"
+  #config.vm.provision "shell", path: "../base-scripts/git-install.sh"
+  #config.vm.provision "shell", path: "../base-scripts/mvn-install.sh" 
+  #config.vm.provision "shell", path: "../base-scripts/gradle-install.sh"
+  #config.vm.provision "shell", path: "../base-scripts/idea-install.sh"
+  #config.vm.provision "shell", path: "../base-scripts/eclipse-install.sh"
+  #config.vm.provision "shell", path: "../base-scripts/docker-install.sh"
   config.vm.provision "shell", path: "scripts/kafka-install.sh"
+  config.vm.provision "shell", path: "scripts/sample-app-install.sh"
+  #config.vm.provision "shell", path: "scripts/scc-sources.sh"
+  config.vm.provision "shell", path: "../base-scripts/post-install.sh"
+
+  #kafka ports
   config.vm.network :forwarded_port, guest: 2181, host: 2181, id:'zookeeper'
   config.vm.network :forwarded_port, guest: 9092, host: 9092, id:'kafka'
-  config.vm.provision "shell", path: "scripts/sample-app-install.sh"
-  config.vm.network :forwarded_port, guest: 12001, host: 12001, id:'kafka-demo-app'
-  config.vm.provision "shell", path: "scripts/post-install.sh"
+  #sample app ports
+  config.vm.network :forwarded_port, guest: 12001, host: 12002, id:'kafka-demo-app'
 
- end
+end

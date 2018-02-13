@@ -46,6 +46,9 @@ Vagrant vereinfacht neben dem setup auch das Benutzen der VM.
 
   Source: https://gist.github.com/haf/2843680
 
+ - Um shared folder auf der Guest VM mappen: vagrant plugin install vagrant-nfs_guest
+ 
+ - sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
 
 
 

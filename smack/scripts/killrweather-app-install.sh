@@ -1,16 +1,14 @@
 #!/bin/bash
 
-echo "Testapp installieren..."
+echo "killrweather app holen..."
 
 sudo kill -9 `pgrep --full kafka-demo`
 
-cd /opt
-rm -rf /opt/kafka-demo
+rm -rf /opt/src/killrweather
 
-git clone https://github.com/schustes/kafka-demo.git
+mkdir -p /opt/src
+cd /opt/src/
 
-cd /opt/kafka-demo
-nohup /opt/gradle/bin/gradle bootRun & >/dev/null
+git clone https://github.com/killrweather/killrweather.git
 
-echo "Testapp sollte nun unter localhost:12001/kafkademo/consumer erreichbar sein!"
 
